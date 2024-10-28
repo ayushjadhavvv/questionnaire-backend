@@ -1,65 +1,93 @@
 # Interactive Questionnaire App Backend
 
-This is the backend implementation for the Interactive Questionnaire App, designed to provide dynamic question support, user progress tracking, and efficient data retrieval for a seamless user experience.
-
+This backend implementation supports the Interactive Questionnaire App. It provides various question types, user progress tracking, and efficient data retrieval with pagination.
 
 ## Prerequisites
 
-- **Node.js**: [Download and install Node.js](https://nodejs.org/).
-- **MongoDB**: A MongoDB instance, such as [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) or a local MongoDB server.
-
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/) (MongoDB Atlas or local installation)
 
 ## Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repository-url>
-   ```
-2. **Navigate into the project directory**:
-   ```bash
-   cd questionnaire-backend
-   ```
-3. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+### Clone the Repository
+```bash
+git clone <repository-url>
+cd questionnaire-backend
 
-Replace `<repository-url>` with your GitHub repository link, which you can copy from GitHub after creating the repository.
+## Install Dependencies
+Run the following command to install the required dependencies:
 
-#### 4. **Environment Setup**
-- Describe setting up the `.env` file and what variables are needed (without showing sensitive information).
-- Mention the `.env.example` file as a reference for the user.
+```bash
+npm install
 
-```markdown
+
 ## Environment Setup
 
 1. Create a `.env` file in the root directory.
-2. Copy the values from `.env.example` and fill in your specific configuration.
 
-Example `.env` structure:
+### Configure Environment Variables
+
+Copy values from `.env.example` and fill in specific configuration details.
+
+### Example `.env` Structure:
 ```plaintext
 MONGODB_URI=<Your MongoDB URI>
 PORT=5000
 
-#### 5. **Usage**
-- Explain how to start the project and run the server.
-- You can also include any sample API requests or links to a Postman collection for testing.
 
-```markdown
 ## Usage
 
-To start the server, run:
+To start the server, run the following command:
+
 ```bash
 npm start
 
 
-#### 6. **Endpoints**
-- Provide a brief description of each available endpoint, listing the path and purpose.
+# Testing
+You can test the API using Postman or similar API clients. For easy testing, a Postman collection can be provided upon request.
 
-```markdown
 ## API Endpoints
 
-- `GET /api/questions` - Retrieve a paginated list of questions.
-- `POST /api/questions` - Create a new question in the database.
-- `POST /api/submit-answer` - Submit user answer for a specific question.
-- `GET /api/progress/:userId` - Retrieve progress for a user.
+Below are the key API endpoints:
+
+### GET /api/questions
+- **Description:** Retrieve a paginated list of questions.
+- **Parameters:** 
+  - `page` (optional) for pagination.
+- **Details:** Fetches a paginated list of available questions from the database.
+
+---
+
+### POST /api/questions
+- **Description:** Create a new question in the database.
+- **Payload:**
+```json
+{
+  "type": "multiple_choice",
+  "questionText": "What is your favorite fruit?",
+  "options": ["Apple", "Banana", "Cherry"]
+}
+
+Description: Adds a new question with specified type, text, and options.
+
+### POST /api/submit-answer
+- **Description:** Submit user answer for a specific question.
+
+- **Payload:**
+```json
+{
+  "userId": "user123",
+  "questionId": "question123",
+  "answer": "Banana"
+}
+
+Description: Saves the user’s answer to the specified question in the database.
+
+
+### GET /api/progress/
+- **Description:** Retrieve progress for a user.
+
+- **Parameters:**
+  - `userId` (in URL path)
+
+- **Details:** Fetches saved progress for the user to allow resuming where they left off.
