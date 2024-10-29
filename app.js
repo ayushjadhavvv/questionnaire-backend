@@ -1,11 +1,11 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const bodyParser = require('body-parser'); // Import body-parser
-const connectDB = require('./config/database'); // Ensure this path is correct
-const questionnaireRoutes = require('./routes/questionnaire'); // Ensure this path is correct
-const answerRoutes = require('./routes/answer'); // Adjust path as necessary
-const Answer = require('./models/answer'); // This should be the model file
+const bodyParser = require('body-parser');
+const connectDB = require('./config/database'); 
+const questionnaireRoutes = require('./routes/questionnaire'); 
+const answerRoutes = require('./routes/answer'); 
+const Answer = require('./models/answer'); 
 
 // Load environment variables from .env file
 dotenv.config();

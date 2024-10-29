@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Answer = require('../models/answer'); // Adjust the path as necessary
+const Answer = require('../models/answer');
 
 // POST route to submit an answer
 router.post('/answers', async (req, res) => {
     try {
-        const { questionId, userId, answer, timestamp } = req.body; // Ensure you're destructuring 'answer'
+        const { questionId, userId, answer, timestamp } = req.body;
         
         // Create a new answer document
         const newAnswer = new Answer({
             questionId,
             userId,
             answer, // Save the answer here
-            submittedAt: timestamp ? new Date(timestamp) : new Date(), // Use provided timestamp or current time
+            submittedAt: timestamp ? new Date(timestamp) : new Date(),
         }); 
 
         // Save to the database

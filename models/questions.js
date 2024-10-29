@@ -5,7 +5,7 @@ const questionSchema = new mongoose.Schema({
   questionText: { type: String, required: true },
   options: [String], // Only used for multiple choice or multiple selections
   range: { min: Number, max: Number }, // Only used for numerical input
-  answer: mongoose.Schema.Types.Mixed // Flexible field for storing answers (e.g., array for multiple selections)
+  answer: mongoose.Schema.Types.Mixed // Flexible field for storing answers
 });
 
 const Question = mongoose.model('Question', questionSchema);
