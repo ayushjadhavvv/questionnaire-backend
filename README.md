@@ -30,7 +30,7 @@ npm install
 Copy values from `.env.example` and fill in specific configuration details.
 
 ### Example `.env` Structure:
-```plaintext
+
 MONGODB_URI=<Your MongoDB URI>
 PORT=5000
 

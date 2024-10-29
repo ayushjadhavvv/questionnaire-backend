@@ -1,7 +1,11 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
+const bodyParser = require('body-parser'); // Import body-parser
 const connectDB = require('./config/database'); // Ensure this path is correct
 const questionnaireRoutes = require('./routes/questionnaire'); // Ensure this path is correct
+const answerRoutes = require('./routes/answer'); // Adjust path as necessary
+const Answer = require('./models/answer'); // This should be the model file
 
 // Load environment variables from .env file
 dotenv.config();
@@ -12,15 +16,20 @@ connectDB();
 const app = express();
 
 // Middleware to parse JSON requests
-app.use(express.json());
+app.use(express.json()); // Using express's built-in JSON parser
+app.use(bodyParser.json()); // For parsing application/json
+
+// Enable all CORS requests, or configure as needed
+app.use(cors());
 
 // Root route
 app.get('/', (req, res) => {
   res.send('Welcome to the Questionnaire API!'); // You can customize this message
 });
 
-// Use our defined routes
+// Use our defined routes for questionnaire and answer handling
 app.use('/api', questionnaireRoutes); // Ensure questionnaireRoutes is an Express Router instance
+app.use('/api', answerRoutes); // Register the router for answer-related routes
 
 // Set the port for the application
 const PORT = process.env.PORT || 5000;
