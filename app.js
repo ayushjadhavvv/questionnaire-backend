@@ -7,10 +7,10 @@ const questionnaireRoutes = require('./routes/questionnaire');
 const answerRoutes = require('./routes/answer'); 
 const Answer = require('./models/answer'); 
 
-// Load environment variables from .env file
+// Loading environment variables from .env file
 dotenv.config();
 
-// Connect to MongoDB Atlas
+// Connecting to MongoDB Atlas
 connectDB();
 
 const app = express();
@@ -24,14 +24,14 @@ app.use(cors());
 
 // Root route
 app.get('/', (req, res) => {
-  res.send('Welcome to the Questionnaire API!'); // You can customize this message
+  res.send('Welcome to the Questionnaire API!');
 });
 
 // Use our defined routes for questionnaire and answer handling
-app.use('/api', questionnaireRoutes); // Ensure questionnaireRoutes is an Express Router instance
-app.use('/api', answerRoutes); // Register the router for answer-related routes
+app.use('/api', questionnaireRoutes);
+app.use('/api', answerRoutes); 
 
-// Set the port for the application
+// Setting the port for the application
 const PORT = process.env.PORT || 5000;
 
 // Start the server and listen on the specified port

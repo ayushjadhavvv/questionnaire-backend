@@ -107,7 +107,7 @@ router.post('/submit-answers', async (req, res) => {
       return res.status(400).json({ message: 'Invalid request: answers must be an array and userId is required.' });
     }
 
-    // Prepare answer records for bulk insert
+    // Preparing answer records for bulk insert
     const answerRecords = answers.map(answer => ({
       questionId: answer.questionId,
       userId: userId,
